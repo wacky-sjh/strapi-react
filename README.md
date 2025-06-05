@@ -2,7 +2,7 @@
 
 ## 1. Strapi 서버 실행
 
-1. 터미널을 열고 `backend` 디렉토리로 이동합니다.
+1. 터미널을 열고 `server` 디렉토리로 이동합니다.
    ```bash
    cd server
    ```
@@ -14,6 +14,9 @@
    ```bash
    npm run develop
    ```
+4. 서버가 실행되면 아래 주소에서 접속할 수 있습니다.
+   - API: [http://localhost:1337](http://localhost:1337)
+   - **Strapi CMS 관리자**: [http://localhost:1337/admin](http://localhost:1337/admin)
 
 ## 2. 프론트엔드 개발 서버 실행
 
@@ -25,6 +28,8 @@
    ```bash
    npm run dev
    ```
+3. 서버가 실행되면 아래 주소에서 접속할 수 있습니다.
+   - [http://localhost:5173](http://localhost:5173)
 
 ---
 
