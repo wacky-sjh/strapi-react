@@ -4,8 +4,8 @@
   "info": {
     "singularName": "about",
     "pluralName": "abouts",
-    "displayName": "About",
-    "description": "Write about yourself and the content you create"
+    "displayName": "[사이트 · 03] 소개",
+    "description": "사이트 소개 내용을 작성합니다."
   },
   "options": {
     "draftAndPublish": false

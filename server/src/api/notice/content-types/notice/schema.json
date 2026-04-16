@@ -4,7 +4,7 @@
   "info": {
     "singularName": "notice",
     "pluralName": "notices",
-    "displayName": "Notice"
+    "displayName": "[사이트 · 01] 공지사항"
   },
   "options": {
     "draftAndPublish": true

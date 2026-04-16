@@ -15,7 +15,7 @@ const FAQ = () => {
     <PageLayout>
       <Card className="w-full max-w-2xl mx-auto min-h-[400px] flex flex-col justify-center items-center">
         <CardHeader className="w-full text-center">
-          <CardTitle className="text-2xl font-bold mb-6 text-center">FAQ</CardTitle>
+          <CardTitle className="text-2xl font-bold mb-6 text-center">자주 묻는 질문</CardTitle>
         </CardHeader>
         <CardContent className="w-full flex flex-col items-center justify-center text-center grow h-full">
           <div className="w-[80%] max-w-lg mx-auto">

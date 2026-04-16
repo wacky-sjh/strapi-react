@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_entries",
+  "info": {
+    "singularName": "manual-entry",
+    "pluralName": "manual-entries",
+    "displayName": "[매뉴얼 · 01] 문서(본문)",
+    "description": "실제 매뉴얼 글입니다. 먼저 대·중·소분류 카테고리 항목을 만들고 발행한 뒤, 아래 관계 필드에서 선택하세요. 관계 필드 옆의 새로 만들기(Create)를 누르면 각각 「[매뉴얼 · 02] 대분류 카테고리」「[매뉴얼 · 03] 중분류 카테고리」「[매뉴얼 · 04] 소분류 카테고리」 전용 창이 열립니다."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "largeCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manual-large.manual-large",
+      "required": true
+    },
+    "mediumCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manual-medium.manual-medium",
+      "required": true
+    },
+    "smallCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manual-small.manual-small",
+      "required": true
+    },
+    "subCategory": {
+      "type": "string"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

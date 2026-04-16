@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_smalls",
+  "info": {
+    "singularName": "manual-small",
+    "pluralName": "manual-smalls",
+    "displayName": "[매뉴얼 · 04] 소분류 카테고리",
+    "description": "중분류 아래 세부 분류입니다. 이 타입에서 새 항목을 만들 때 열리는 창은 소분류 전용입니다. code에는 중분류-순번 형식(예: 2-1-1, 2-1-2)을 넣고, 상위 중분류(medium)를 반드시 선택하세요."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "medium": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manual-medium.manual-medium",
+      "inversedBy": "smalls"
+    }
+  }
+}

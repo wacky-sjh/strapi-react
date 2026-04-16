@@ -376,8 +376,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   collectionName: 'abouts';
   info: {
-    description: 'Write about yourself and the content you create';
-    displayName: 'About';
+    description: '\uC0AC\uC774\uD2B8 \uC18C\uAC1C \uB0B4\uC6A9\uC744 \uC791\uC131\uD569\uB2C8\uB2E4.';
+    displayName: '[\uC0AC\uC774\uD2B8 \u00B7 03] \uC18C\uAC1C';
     pluralName: 'abouts';
     singularName: 'about';
   };
@@ -405,7 +405,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
-    displayName: 'FAQ';
+    displayName: '[\uC0AC\uC774\uD2B8 \u00B7 02] \uC790\uC8FC \uBB3B\uB294 \uC9C8\uBB38';
     pluralName: 'faqs';
     singularName: 'faq';
   };
@@ -432,8 +432,8 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
-    description: 'Define global settings';
-    displayName: 'Global';
+    description: '\uC0AC\uC774\uD2B8 \uC804\uC5ED \uC124\uC815\uC744 \uC815\uC758\uD569\uB2C8\uB2E4.';
+    displayName: '[\uC0AC\uC774\uD2B8 \u00B7 04] \uC804\uC5ED \uC124\uC815';
     pluralName: 'globals';
     singularName: 'global';
   };
@@ -461,10 +461,195 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiManualEntryManualEntry extends Struct.CollectionTypeSchema {
+  collectionName: 'manual_entries';
+  info: {
+    description: '\uC2E4\uC81C \uB9E4\uB274\uC5BC \uAE00\uC785\uB2C8\uB2E4. \uBA3C\uC800 \uB300\u00B7\uC911\u00B7\uC18C\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC \uD56D\uBAA9\uC744 \uB9CC\uB4E4\uACE0 \uBC1C\uD589\uD55C \uB4A4, \uC544\uB798 \uAD00\uACC4 \uD544\uB4DC\uC5D0\uC11C \uC120\uD0DD\uD558\uC138\uC694. \uAD00\uACC4 \uD544\uB4DC \uC606\uC758 \uC0C8\uB85C \uB9CC\uB4E4\uAE30(Create)\uB97C \uB204\uB974\uBA74 \uAC01\uAC01 \u300C[\uB9E4\uB274\uC5BC \u00B7 02] \uB300\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC\u300D\u300C[\uB9E4\uB274\uC5BC \u00B7 03] \uC911\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC\u300D\u300C[\uB9E4\uB274\uC5BC \u00B7 04] \uC18C\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC\u300D \uC804\uC6A9 \uCC3D\uC774 \uC5F4\uB9BD\uB2C8\uB2E4.';
+    displayName: '[\uB9E4\uB274\uC5BC \u00B7 01] \uBB38\uC11C(\uBCF8\uBB38)';
+    pluralName: 'manual-entries';
+    singularName: 'manual-entry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    largeCategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::manual-large.manual-large'
+    > &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-entry.manual-entry'
+    > &
+      Schema.Attribute.Private;
+    mediumCategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::manual-medium.manual-medium'
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    smallCategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::manual-small.manual-small'
+    > &
+      Schema.Attribute.Required;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    subCategory: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiManualLargeManualLarge extends Struct.CollectionTypeSchema {
+  collectionName: 'manual_larges';
+  info: {
+    description: '\uB9E4\uB274\uC5BC \uCD5C\uC0C1\uC704 \uBD84\uB958\uC785\uB2C8\uB2E4. \uC774 \uD0C0\uC785\uC5D0\uC11C \uC0C8 \uD56D\uBAA9\uC744 \uB9CC\uB4E4 \uB54C \uC5F4\uB9AC\uB294 \uCC3D\uC740 \uB300\uBD84\uB958 \uC804\uC6A9\uC785\uB2C8\uB2E4. code\uC5D0\uB294 1, 2, 3\uCC98\uB7FC \uD55C \uB2E8\uACC4 \uBC88\uD638\uB9CC \uB123\uACE0, title\uC5D0 \uD45C\uC2DC \uC774\uB984\uC744 \uB123\uC73C\uC138\uC694.';
+    displayName: '[\uB9E4\uB274\uC5BC \u00B7 02] \uB300\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC';
+    pluralName: 'manual-larges';
+    singularName: 'manual-large';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-large.manual-large'
+    > &
+      Schema.Attribute.Private;
+    mediums: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-medium.manual-medium'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiManualMediumManualMedium
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'manual_mediums';
+  info: {
+    description: '\uB300\uBD84\uB958 \uC544\uB798 \uC911\uAC04 \uBD84\uB958\uC785\uB2C8\uB2E4. \uC774 \uD0C0\uC785\uC5D0\uC11C \uC0C8 \uD56D\uBAA9\uC744 \uB9CC\uB4E4 \uB54C \uC5F4\uB9AC\uB294 \uCC3D\uC740 \uC911\uBD84\uB958 \uC804\uC6A9\uC785\uB2C8\uB2E4. code\uC5D0\uB294 \uB300\uBD84\uB958-\uC21C\uBC88 \uD615\uC2DD(\uC608: 2-1, 2-2)\uC744 \uB123\uACE0, \uC0C1\uC704 \uB300\uBD84\uB958(large)\uB97C \uBC18\uB4DC\uC2DC \uC120\uD0DD\uD558\uC138\uC694.';
+    displayName: '[\uB9E4\uB274\uC5BC \u00B7 03] \uC911\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC';
+    pluralName: 'manual-mediums';
+    singularName: 'manual-medium';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    large: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::manual-large.manual-large'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-medium.manual-medium'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    smalls: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-small.manual-small'
+    >;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiManualSmallManualSmall extends Struct.CollectionTypeSchema {
+  collectionName: 'manual_smalls';
+  info: {
+    description: '\uC911\uBD84\uB958 \uC544\uB798 \uC138\uBD80 \uBD84\uB958\uC785\uB2C8\uB2E4. \uC774 \uD0C0\uC785\uC5D0\uC11C \uC0C8 \uD56D\uBAA9\uC744 \uB9CC\uB4E4 \uB54C \uC5F4\uB9AC\uB294 \uCC3D\uC740 \uC18C\uBD84\uB958 \uC804\uC6A9\uC785\uB2C8\uB2E4. code\uC5D0\uB294 \uC911\uBD84\uB958-\uC21C\uBC88 \uD615\uC2DD(\uC608: 2-1-1, 2-1-2)\uC744 \uB123\uACE0, \uC0C1\uC704 \uC911\uBD84\uB958(medium)\uB97C \uBC18\uB4DC\uC2DC \uC120\uD0DD\uD558\uC138\uC694.';
+    displayName: '[\uB9E4\uB274\uC5BC \u00B7 04] \uC18C\uBD84\uB958 \uCE74\uD14C\uACE0\uB9AC';
+    pluralName: 'manual-smalls';
+    singularName: 'manual-small';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::manual-small.manual-small'
+    > &
+      Schema.Attribute.Private;
+    medium: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::manual-medium.manual-medium'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    sortOrder: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNoticeNotice extends Struct.CollectionTypeSchema {
   collectionName: 'notices';
   info: {
-    displayName: 'Notice';
+    displayName: '[\uC0AC\uC774\uD2B8 \u00B7 01] \uACF5\uC9C0\uC0AC\uD56D';
     pluralName: 'notices';
     singularName: 'notice';
   };
@@ -1004,6 +1189,10 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::faq.faq': ApiFaqFaq;
       'api::global.global': ApiGlobalGlobal;
+      'api::manual-entry.manual-entry': ApiManualEntryManualEntry;
+      'api::manual-large.manual-large': ApiManualLargeManualLarge;
+      'api::manual-medium.manual-medium': ApiManualMediumManualMedium;
+      'api::manual-small.manual-small': ApiManualSmallManualSmall;
       'api::notice.notice': ApiNoticeNotice;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

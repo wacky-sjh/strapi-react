@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_mediums",
+  "info": {
+    "singularName": "manual-medium",
+    "pluralName": "manual-mediums",
+    "displayName": "[매뉴얼 · 03] 중분류 카테고리",
+    "description": "대분류 아래 중간 분류입니다. 이 타입에서 새 항목을 만들 때 열리는 창은 중분류 전용입니다. code에는 대분류-순번 형식(예: 2-1, 2-2)을 넣고, 상위 대분류(large)를 반드시 선택하세요."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "large": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::manual-large.manual-large",
+      "inversedBy": "mediums"
+    },
+    "smalls": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::manual-small.manual-small",
+      "mappedBy": "medium"
+    }
+  }
+}

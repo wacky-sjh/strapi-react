@@ -4,8 +4,8 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Global",
-    "description": "Define global settings"
+    "displayName": "[사이트 · 04] 전역 설정",
+    "description": "사이트 전역 설정을 정의합니다."
   },
   "options": {
     "draftAndPublish": false

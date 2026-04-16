@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_larges",
+  "info": {
+    "singularName": "manual-large",
+    "pluralName": "manual-larges",
+    "displayName": "[매뉴얼 · 02] 대분류 카테고리",
+    "description": "매뉴얼 최상위 분류입니다. 이 타입에서 새 항목을 만들 때 열리는 창은 대분류 전용입니다. code에는 1, 2, 3처럼 한 단계 번호만 넣고, title에 표시 이름을 넣으세요."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "mediums": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::manual-medium.manual-medium",
+      "mappedBy": "large"
+    }
+  }
+}
